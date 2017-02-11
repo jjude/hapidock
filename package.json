@@ -3,18 +3,15 @@
   "version": "1.0.0",
   "description": "hapijs docker development environment",
   "scripts": {
-    "start": "gulp"
+    "start": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
+    "compile": "tsc -p . && node ./build/server.js"
   },
   "author": "Joseph Jude",
   "license": "MIT",
   "dependencies": {
-    "gulp": "3.9.1",
     "hapi": "13.5.0"
   },
   "devDependencies": {
-    "gulp": "3.9.1",
-    "gulp-nodemon": "2.2.1",
-    "gulp-typescript": "3.1.4",
     "nodemon": "1.11.0",
     "typescript": "2.1.5"
   }

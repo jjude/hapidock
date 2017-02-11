@@ -2,7 +2,10 @@ version: '2'
 services:
   hapi:
     build: .
+    image: jjude/hapi
+    container_name: hapi
     ports:
       - "3000:3000"
     volumes:
-      - ". :/usr/hapidoc"
+      - .:/usr/hapi
+      - /usr/hapi/node_modules

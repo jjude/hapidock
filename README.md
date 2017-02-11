@@ -1,32 +1,29 @@
-# hapidoc
+# hapidock
 
-A docker hapijs environment
+A docker based development environment for developing [hapijs](http://hapijs.com/) applications in typescript 
 
-Objective:
-- develop node in a near-production environment
-- source code should be on the guest
-- use gulp to watch for changes and restart
-- node_modules should be in the host (what happens in the development when container is closed and all changes are lost?)
-- if above objectives are not met, what is the benefit of container for development?
+<a name="objective"></a>
+## Objective:
+- develop in a near-production environment
+- source code should be on the host, but run in container
+- project dependencies (i.e: `node_modules`) should be only in container and not in host
 
-This will create a docker image where you can run gulp to run the server. node_modules is on the host.
-
-First build the image.
-
-```
-docker build -t jjude/hapidoc .
-```
-
-then run using this.
+<a name="usage"></a>
+## Usage
+1 - Clone hapidock repository
 
 ```
-docker run \
-    --name "hapi" \
-    -it \
-    -p 3000:3000 \
-    -v $(pwd):/usr/hapidoc \
-    jjude/hapidoc \
-    /bin/sh
+git clone https://github.com/jjude/hapidock
 ```
 
-Still to do: use docker-compose; node_modules should be in the container.
+2 -  Enter the hapidock directory and bring up the container
+
+```
+docker-compose up
+```
+
+When you execute this for the first time, it will download the needed components (alpine, node, npm, hapijs etc) and build the container. Once built it will bring up the container and execute the `npm start` command.
+
+When you run `docker-compose up` next time, it will be faster, because everything is already downloaded.
+
+3 - Now go to `http://localhost:3000` on your host and enjoy
