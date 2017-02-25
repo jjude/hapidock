@@ -4,14 +4,14 @@ var server = new hapi.Server();
 server.connection({ port: 3000 });
 server.route({
     method: "GET",
-    path: "/",
+    path: "/posts",
     handler: function (request, reply) {
-        reply("Hello World");
+        return reply("query parameters are: ", request.params, request.query);
     }
 });
 server.start(function (err) {
     if (err) {
         throw err;
     }
-    console.log("server running at " + server.info.uri);
+    console.log("server running in " + server.info.uri);
 });

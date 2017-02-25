@@ -27,3 +27,6 @@ When you execute this for the first time, it will download the needed components
 When you run `docker-compose up` next time, it will be faster, because everything is already downloaded.
 
 3 - Now go to `http://localhost:3000` on your host and enjoy
+
+It also builds postgresql & pgadmin automatically. Use these parameters to connect to pg from pgadmin: username: postgres; db: postgres; password: secret. You need the hostname. Hostname is pg (the service name in docker-compose) 
+

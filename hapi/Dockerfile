@@ -1,3 +1,5 @@
+# this file is part of hapidock
+# refer https://jjude.com/hapidock
 FROM alpine:3.4
 
 RUN apk update && apk upgrade && apk add git build-base nodejs && rm -rf /var/cache/apk/*

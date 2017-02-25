@@ -1,17 +1,20 @@
 {
-  "name": "hapidoc",
+  "name": "hapidock",
   "version": "1.0.0",
   "description": "hapijs docker development environment",
   "scripts": {
     "start": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm run compile\"",
-    "compile": "tsc -p . && node ./build/server.js"
+    "compile": "tsc --outDir ./build --module commonjs ./src/*.ts && node ./build/server.js"
   },
   "author": "Joseph Jude",
   "license": "MIT",
   "dependencies": {
-    "hapi": "13.5.0"
+    "hapi": "13.5.0",
+    "pg": "^6.1.2",
+    "typeorm": "0.0.9"
   },
   "devDependencies": {
+    "@types/node": "^7.0.5",
     "nodemon": "1.11.0",
     "typescript": "2.1.5"
   }

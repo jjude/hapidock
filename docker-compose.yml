@@ -1,11 +1,36 @@
 version: '2'
 services:
   hapi:
-    build: .
+    # pick up Dockerfile from ./hapi directory
+    build: ./hapi
+    # name the image
     image: jjude/hapi
     container_name: hapi
+    depends_on:
+      - pg
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/hapi
+      # current host directory is exposed as /usr/hapi
+      # also mount node_modules directory (within docker container)
+      # without mounting node_modules, the container will throw an error
+      - ./hapi:/usr/hapi
       - /usr/hapi/node_modules
+  pg:
+    build: ./pg
+    image: jjude/pg
+    container_name: pg
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+  pgadmin:
+    build: ./pgadmin
+    image: jjude/pgadmin
+    container_name: pgadmin
+    ports:
+      - "5050:5050"
+    links:
+      - pg
